@@ -3,6 +3,7 @@ package com.webappclouds.mystopwatch;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class activity_stopwatch extends Activity {
 
@@ -27,5 +28,21 @@ public class activity_stopwatch extends Activity {
     public void onClickReset(View view) {
         running = false;
         seconds = 0;
+    }
+
+    private void runTimer(){
+        final TextView timeView = findViewById(R.id.time_view);
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+
+        String time = String.format("%d:%03d:%02d",hours,minutes,secs);
+
+        timeView.setText(time);
+
+        if(running){
+            
+            seconds++;
+        }
     }
 }
